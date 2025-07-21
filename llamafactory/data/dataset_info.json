@@ -1,0 +1,60 @@
+{
+  "LLaVA_v1_6_vicuna_7b_7k": {
+    "file_name": "ours/LLaVA_v1_6_vicuna_7b_SENTINEL_7k.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "chosen": "chosen",
+      "context": "context",
+      "rejected": "rejected",
+      "images": "images"
+    }
+  },
+  "LLaVA_v1_6_vicuna_13b_7k": {
+    "file_name": "ours/LLaVA_v1_6_vicuna_13b_SENTINEL_7k.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "chosen": "chosen",
+      "context": "context",
+      "rejected": "rejected",
+      "images": "images"
+    }
+  },
+  "Qwen2_VL_2B_Instruct_12k": {
+    "file_name": "ours/Qwen2_VL_2B_Instruct_SENTINEL_12k.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "chosen": "chosen",
+      "context": "context",
+      "rejected": "rejected",
+      "images": "images"
+    }
+  },
+  "Qwen2_VL_7B_Instruct_7k": {
+    "file_name": "ours/Qwen2_VL_7B_Instruct_SENTINEL_7k.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "chosen": "chosen",
+      "context": "context",
+      "rejected": "rejected",
+      "images": "images"
+    }
+  },
+  "Qwen2_5_VL_7B_Instruct_7k": {
+    "file_name": "ours/Qwen2_5_VL_7B_Instruct_SENTINEL_7k.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "chosen": "chosen",
+      "context": "context",
+      "rejected": "rejected",
+      "images": "images"
+    }
+  },
+  "identity": {
+    "file_name": "identity.json"
+  }
+}

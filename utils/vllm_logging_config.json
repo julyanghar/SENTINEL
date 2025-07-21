@@ -1,0 +1,25 @@
+{
+  "formatters": {
+    "vllm": {
+      "class": "vllm.logging_utils.NewLineFormatter",
+      "datefmt": "%Y-%m-%d %H:%M:%S",
+      "format": "[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s >> %(message)s"
+    }
+  },
+  "handlers": {
+    "stdout": {
+      "class": "logging.StreamHandler",
+      "formatter": "vllm",
+      "level": "WARNING",
+      "stream": "ext://sys.stdout"
+    }
+  },
+  "loggers": {
+    "vllm": {
+      "handlers": ["stdout"],
+      "level": "WARNING",
+      "propagage": false
+    }
+  },
+  "version": 1
+}
