@@ -8,6 +8,8 @@
 <img src='https://img.shields.io/badge/Datasets-HF-Green'></a>
 <a href='https://huggingface.co/collections/psp-dada/sentinel-686ea70912079af142015286'>
 <img src='https://img.shields.io/badge/Models-HF-orange'></a>
+<a href='https://huggingface.co/papers/2507.12455'>
+<img src='https://img.shields.io/badge/Discussion-HF-blue'></a>
 <a href='https://github.com/pspdada/SENTINEL/blob/main/LICENSE'>
 <img src='https://img.shields.io/badge/LICENSE-Apache_2.0-yellow'></a>
 
