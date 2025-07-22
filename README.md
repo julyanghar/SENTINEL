@@ -96,7 +96,7 @@ We present the [**SENTINEL Dataset**](https://huggingface.co/datasets/psp-dada/S
 <details>
 <summary>Dataset details</summary>
 
-The SENTINEL dataset records the preference pairs of the `LLaVA-v1.5`, `LLaVA-v1.6`, `Qwen2-VL` and `Qwen2.5-VL` family, enabling robust and scalable hallucination mitigation without external supervision.
+The SENTINEL dataset records the preference pairs of the `LLaVA-v1.5`, `LLaVA-v1.6`, `Qwen2-VL`, and `Qwen2.5-VL` families, enabling robust and scalable hallucination mitigation without the need for external supervision.
 
 It contains the following components:
 
@@ -154,7 +154,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
 3. Install additional necessary packages
    <details>
    <summary>Details</summary>
-   Download necessary NLTK package
+   Download the necessary NLTK package
 
    ```python
    import nltk
@@ -164,7 +164,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
    nltk.download("averaged_perceptron_tagger_eng")
    ```
 
-   Download necessary Spacy package
+   Download the necessary Spacy package
 
    ```bash
    pip install -U pip setuptools wheel
@@ -173,7 +173,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
    python -m spacy download en_core_web_trf # Need for Ovject Halbench evaluation
    ```
 
-   For the ues of YOLO model:
+   For the use of the YOLO model:
 
    ```bash
    pip install git+https://github.com/openai/CLIP.git
@@ -236,7 +236,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
 
       - If you want to reproduce our experiments, you can use the [SENTINEL Dataset](https://huggingface.co/datasets/psp-dada/SENTINEL) that we constructed.
 
-      - If you prefer to build your own dataset, you can use the data generated in the [previous section](#data-generation).
+      - If you prefer to build your dataset, you can use the data generated in the [previous section](#data-generation).
 
     - Image Data
 
@@ -248,11 +248,11 @@ We provide the model weights mentioned in our paper, all of which are trained us
 
       We modified the code based on the HA-DPO library, which itself is based on the official LLaVA-v1.5 implementation. This choice allows for a fair and convenient comparison with prior work.
 
-      Here, we provide [a training script](./train/models/dpo_llava.sh) to train the model using LoRA. Run the following command to start lora training.
+      Here, we provide [a training script](./train/models/dpo_llava.sh) to train the model using LoRA. Run the following command to start LoRA training.
 
       ```bash
       export INPUT_MODEL=/your/path/to/llava-v1.5-7b/or/13b
-      export TRAINING_DATA_PATH=/your/path/to/taining/data/file
+      export TRAINING_DATA_PATH=/your/path/to/training/data/file
       export OUTPUT_NAME=/the/name/of/directory/to/save
       export VISUAL_GENOME_PATH=/your/path/to/visual/genome
       bash "train/models/dpo_llava.sh"
@@ -279,7 +279,7 @@ For more information, please see our [Evaluation README](/docs/Evaluation.md).
 
 ## 📝 Citation
 
-If you find our model/code/data/paper helpful, please consider cite our papers 📝 and star us ⭐️！
+If you find our model/code/data/paper helpful, please consider citing our papers 📝 and starring us ⭐️！
 
 ```bibtex
 @article{peng2025mitigating,
