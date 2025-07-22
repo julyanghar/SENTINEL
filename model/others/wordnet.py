@@ -12,7 +12,7 @@ class WordnetModel:
         logger: Logger | None = None,
     ):
         """
-        初始化 wordnet 模型。
+        Initialize wordnet model.
         """
         if logger:
             logger.info("Loading Wordnet model")
@@ -21,32 +21,32 @@ class WordnetModel:
 
     def _synsets(self, word: str) -> list[Synset]:
         """
-        获取给定单词的 synsets。
+        Get synsets for the given word.
 
         Args:
-            word: 要获取 synsets 的单词。
+            word: The word to get synsets for.
         Returns:
-            list: 包含给定单词的 synsets 的列表。
+            list: List of synsets containing the given word.
         """
         return wn.synsets(word, lang="eng")
 
     def get_synset_list(self, word: str) -> list[str]:
         """
-        使用 WordNet 库来获取一个单词的同义词集（synsets），并返回这些同义词所构成的列表。
+        Use the WordNet library to get the synsets of a word and return a list of synonyms.
 
         Args:
-            word: 要获取同义词集的单词。
+            word: The word to get synsets for.
         Returns:
-            list: 包含给定单词的同义词集的列表。
+            list: List of synonyms for the given word.
         """
         return list({synset.lemmas()[0].name() for synset in self._synsets(word)})
 
     def is_concrete_noun(self, word: str) -> bool:
         """
-        检查给定的单词是否是具体名词。
+        Check if the given word is a concrete noun.
 
         Args:
-            word: 要检查的单词，假定为名词。
+            word: The word to check, assumed to be a noun.
         """
         if " " in word:
             return any([self.is_concrete_noun(w) for w in word.split()])
@@ -85,7 +85,7 @@ class WordnetModel:
                 "noun.act",
                 "noun.location",
             ]
-            # 判断是否属于具体物体的类别
+            # Determine whether it belongs to the category of concrete objects
             is_concrete = synsets[0].lexname() not in maynotby_concrete
 
             self.is_concrete_noun_cache[word] = is_concrete
@@ -94,12 +94,12 @@ class WordnetModel:
 
     def lemma(self, word: str) -> str:
         """
-        词形还原
+        Lemmatization
         """
         return self.lemmatizer.lemmatize(word)
 
     def word_tokenize(self, text: str) -> list[str]:
         """
-        分词
+        Tokenization
         """
         return nltk.word_tokenize(text)

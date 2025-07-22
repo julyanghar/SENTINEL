@@ -30,19 +30,19 @@ class LlavaModel:
         logger: Logger | None = None,
     ):
         """
-        初始化 LLaVA 模型，根据版本和大小加载不同的模型。
+        Initialize LLaVA model, load different models according to version and size.
 
         Args:
-            use_vllm (bool): 是否使用 vLLM。
-            debug (bool): 是否启用调试模式。
-            version (str): 模型版本，可以是 '1.5' 或 '1.6'。
-            model_size (str): 模型大小，'7b' 或 '13b'。
-            model_dir (str): 模型缓存目录。
-            seed (int): 随机种子。
-            gpu_util (float): GPU 内存利用率。
-            torch_dtype (torch.dtype): PyTorch 数据类型。
-            device (str): 使用的设备（CPU 或 GPU）。
-            logger (Logger | None): 日志记录器。
+            use_vllm (bool): Whether to use vLLM.
+            debug (bool): Whether to enable debug mode.
+            version (str): Model version, can be '1.5' or '1.6'.
+            model_size (str): Model size, '7b' or '13b'.
+            model_dir (str): Model cache directory.
+            seed (int): Random seed.
+            gpu_util (float): GPU memory utilization.
+            torch_dtype (torch.dtype): PyTorch data type.
+            device (str): Device to use (CPU or GPU).
+            logger (Logger | None): Logger.
         """
         assert version in ["1.5", "1.6"], "Invalid LLaVA version. Choose from '1.5' or '1.6'."
         assert model_size in ["7b", "13b"], "Invalid size. Pay attention to the capitalization."
@@ -152,12 +152,12 @@ class LlavaModel:
         return_log_probs=False,
     ) -> list[str] | list[list[str]]:
         """
-        生成图片的描述。
+        Generate responses based on input images and prompts.
         """
 
         images, users, assistants = ensure_lists(images, users, assistants)
 
-        # modifier 去掉最后一个空格
+        # modifier: remove the last character
         prompts: list[str] = u_a_to_prompts(users, assistants, self.processor, lambda x: x[:-1])
         stop_token_ids: list[int] = self.stop_ids if single_sentence else self.eos_id
         if self.use_vllm:

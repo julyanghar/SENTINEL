@@ -5,14 +5,14 @@ from argparse import ArgumentParser, Namespace
 from prettytable import PrettyTable
 
 from .utils import (
-    evaluate,
-    check_same,
     assign_correctness,
+    check_same,
+    evaluate,
     get_eval_all,
+    get_eval_fig,
     get_eval_pair_all,
     get_eval_pair_easy,
     get_eval_pair_hard,
-    get_eval_fig,
     yes_ratio_stats,
 )
 

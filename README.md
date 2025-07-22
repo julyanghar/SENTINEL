@@ -18,18 +18,17 @@
 **[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN) \* <sup>1</sup>**, **[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ) \* <sup>2</sup>**, **[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ) <sup>3</sup>**, **[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN) <sup>1</sup>**<sup>✉️</sup>  
 <sup>1</sup>Harbin Institute of Technology, Shenzhen  
 <sup>2</sup>The Chinese University of Hong Kong  
-<sup>3</sup>The Chinese University of Hong Kong, Shenzhen  
+<sup>3</sup>The Chinese University of Hong Kong, Shenzhen
 
 \* Equal contribution.  
 <sup>✉️</sup> Corresponding author: tianzhuotao@hit.edu.cn.
 
-
 </div>
 
 ## 🎊 News <!-- omit in toc -->
+
 - [2025.07.21] All code, data, and models are released!
 - [2025.06.26] 🎉 Our SENTINEL is accepted by **ICCV 2025**!
-
 
 ## 🚀 Overview <!-- omit in toc -->
 
@@ -51,7 +50,6 @@
 - [⚙️ Training](#️-training)
 - [📈 Evaluation](#-evaluation)
 - [📝 Citation](#-citation)
-
 
 ## 🔑 Key Features
 
@@ -102,16 +100,16 @@ The SENTINEL dataset records the preference pairs of the `LLaVA-v1.5`, `LLaVA-v1
 
 It contains the following components:
 
-* `image_data.jsonl` file
+- `image_data.jsonl` file
 
   This file contains a selection of open-source images extracted from the Visual Genome dataset. It includes only three fields: `image_id`, `image_path`, and `question`, and is used to construct preference training data for hallucination suppression in image captioning tasks.
 
   **Note**: If you want to use the data from this file, please make sure to replace the `image_path` field with the path to your local copy of the Visual Genome dataset.
 
-* `<model_name>.json` files
-  
-  These files represent the preference training datasets generated after the training data construction step, with each file corresponding to a specific model. 
-  
+- `<model_name>.json` files
+
+  These files represent the preference training datasets generated after the training data construction step, with each file corresponding to a specific model.
+
   They include the necessary fields for **C-DPO training**, such as: `"question"`, `"context"`, `"y_win"`, and `"y_lose"`.
 
 <table align="center">
@@ -125,7 +123,6 @@ It contains the following components:
 
 We provide the model weights mentioned in our paper, all of which are trained using **LoRA**. These weights can be seamlessly plugged into the corresponding base models for inference or further fine-tuning.
 
-
 | Base Model             | Training Data Size | LoRA  |                                                                                                                            Download                                                                                                                             |
 | ---------------------- | ------------------ | :---: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | LLaVA-v1.5-7B          | 8.6K               |   ✅   |            [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.5-7b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_7b_SENTINEL_8_6k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-7B-SENTINEL)            |
@@ -136,54 +133,53 @@ We provide the model weights mentioned in our paper, all of which are trained us
 | Qwen2-VL-7B-Instruct   | 7.0K               |   ✅   |          [🤗 Base](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-7B-SENTINEL)          |
 | Qwen2.5-VL-7B-Instruct | 7.0K               |   ✅   |       [🤗 Base](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_5_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2.5-VL-7B-SENTINEL)       |
 
-
-
 ## 💻 Environment Setup
 
-1. Clone this repository and navigate to *SENTINEL* folder
+1. Clone this repository and navigate to _SENTINEL_ folder
 
-    ```bash
-    git clone https://github.com/pspdada/SENTINEL.git --depth=1
-    cd SENTINEL
-    ```
+   ```bash
+   git clone https://github.com/pspdada/SENTINEL.git --depth=1
+   cd SENTINEL
+   ```
 
 2. Install packages
 
-    ```bash
-    conda create -y SENTINEL python=3.10
-    conda activate SENTINEL
-    pip install -r requirements.txt
-    pip install -U flash-attn --no-build-isolation
-    ```
+   ```bash
+   conda create -y SENTINEL python=3.10
+   conda activate SENTINEL
+   pip install -r requirements.txt
+   pip install -U flash-attn --no-build-isolation
+   ```
 
 3. Install additional necessary packages
-    <details>
-    <summary>Details</summary>
-    Download necessary NLTK package
+   <details>
+   <summary>Details</summary>
+   Download necessary NLTK package
 
-    ```python
-    import nltk
-    nltk.download("wordnet")
-    nltk.download("punkt_tab")
-    nltk.download("cmudict")
-    nltk.download("averaged_perceptron_tagger_eng")
-    ```
+   ```python
+   import nltk
+   nltk.download("wordnet")
+   nltk.download("punkt_tab")
+   nltk.download("cmudict")
+   nltk.download("averaged_perceptron_tagger_eng")
+   ```
 
-    Download necessary Spacy package
+   Download necessary Spacy package
 
-    ```bash
-    pip install -U pip setuptools wheel
-    pip install 'spacy[cuda12x]==3.8.0'
-    python -m spacy download en_core_web_md # Need for generating training data
-    python -m spacy download en_core_web_trf # Need for Ovject Halbench evaluation
-    ```
+   ```bash
+   pip install -U pip setuptools wheel
+   pip install 'spacy[cuda12x]==3.8.0'
+   python -m spacy download en_core_web_md # Need for generating training data
+   python -m spacy download en_core_web_trf # Need for Ovject Halbench evaluation
+   ```
 
-    For the ues of YOLO model:
+   For the ues of YOLO model:
 
-    ```bash
-    pip install git+https://github.com/openai/CLIP.git
-    ```
-    </details>
+   ```bash
+   pip install git+https://github.com/openai/CLIP.git
+   ```
+
+   </details>
 
 ## 🔨 Data Generation
 
@@ -191,23 +187,23 @@ We provide the model weights mentioned in our paper, all of which are trained us
 
 1. (Optional) Check the .env file
 
-    You can check the <a href="./utils/.env">.env</a> file to configure environment variables. This file is automatically loaded at runtime. Most entries are commented out by default, and you can modify them as needed.
+   You can check the <a href="./utils/.env">.env</a> file to configure environment variables. This file is automatically loaded at runtime. Most entries are commented out by default, and you can modify them as needed.
 
 2. Select the model to generate data
-   
-    You need to choose an MLLM to generate training data specifically tailored for it. We have implemented support for the LLaVA-v1.5, LLaVA-v1.6, and Qwen-VL families.
 
-    You can switch the model by modifying the `--model` parameter in [`setup_utils.py`](./utils/setup_utils.py). For more details, please refer to the [`generator`](./model/generator) directory.
+   You need to choose an MLLM to generate training data specifically tailored for it. We have implemented support for the LLaVA-v1.5, LLaVA-v1.6, and Qwen-VL families.
+
+   You can switch the model by modifying the `--model` parameter in [`setup_utils.py`](./utils/setup_utils.py). For more details, please refer to the [`generator`](./model/generator) directory.
 
 3. Download [Visual Genome](https://homes.cs.washington.edu/~ranjay/visualgenome/api.html) for images. Download [dataset](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/image_data.jsonl) for data generation and put it in [`dataset`](dataset).
 
 4. Generate training data
 
-    You can use the following command to generate training data. The generated data will be saved in the `./results` directory.
+   You can use the following command to generate training data. The generated data will be saved in the `./results` directory.
 
-    ```bash
-    python main.py
-    ```
+   ```bash
+   python main.py
+   ```
 
 5. Finish generating
 
@@ -218,13 +214,13 @@ We provide the model weights mentioned in our paper, all of which are trained us
 
    - One is `<model_name>.jsonl`, which is an auxiliary file used for analysis and **not** for constructing preference pairs. Each line corresponds to the result for one image and includes:
 
-        - `sentences_cnt`: the total number of sentences describing the image
-        - `hallu_objects`: the total number of hallucinated objects generated during model sampling
-        - `uncertain_objects`: uncertain objects
-        - `nonhallu_objects`: non-hallucinated objects
+     - `sentences_cnt`: the total number of sentences describing the image
+     - `hallu_objects`: the total number of hallucinated objects generated during model sampling
+     - `uncertain_objects`: uncertain objects
+     - `nonhallu_objects`: non-hallucinated objects
 
-    - The other file is `<model_name>_data_pair.jsonl`, where each line is a preference sample pair. It includes essential fields such as `"image_path"`, `"context"`, `"y_win"`, `"y_lose"`, as well as additional fields for analysis.
-    </details>
+   - The other file is `<model_name>_data_pair.jsonl`, where each line is a preference sample pair. It includes essential fields such as `"image_path"`, `"context"`, `"y_win"`, `"y_lose"`, as well as additional fields for analysis.
+   </details>
 
 6. Convert Training Samples into Required Format
 
@@ -235,9 +231,9 @@ We provide the model weights mentioned in our paper, all of which are trained us
 ## ⚙️ Training
 
 1.  **Prepare data**
- 
+
     - Training Data
-      
+
       - If you want to reproduce our experiments, you can use the [SENTINEL Dataset](https://huggingface.co/datasets/psp-dada/SENTINEL) that we constructed.
 
       - If you prefer to build your own dataset, you can use the data generated in the [previous section](#data-generation).
@@ -246,29 +242,29 @@ We provide the model weights mentioned in our paper, all of which are trained us
 
       We use images from the Visual Genome dataset for model training. You can download them from [Visual Genome](https://homes.cs.washington.edu/~ranjay/visualgenome/api.html) and remember where it is.
 
+2.  **Training**
 
-2. **Training** 
+    - LLaVA-v1.5
 
-     - LLaVA-v1.5
-  
-        We modified the code based on the HA-DPO library, which itself is based on the official LLaVA-v1.5 implementation. This choice allows for a fair and convenient comparison with prior work.
-        
-        Here, we provide [a training script](./train/models/dpo_llava.sh) to train the model using LoRA. Run the following command to start lora training.
+      We modified the code based on the HA-DPO library, which itself is based on the official LLaVA-v1.5 implementation. This choice allows for a fair and convenient comparison with prior work.
 
-        ```bash
-        export INPUT_MODEL=/your/path/to/llava-v1.5-7b/or/13b
-        export TRAINING_DATA_PATH=/your/path/to/taining/data/file
-        export OUTPUT_NAME=/the/name/of/directory/to/save
-        export VISUAL_GENOME_PATH=/your/path/to/visual/genome
-        bash "train/models/dpo_llava.sh"
-        ```
-        The final weights will be saved in the `./train/results/${OUTPUT_NAME}` directory.
+      Here, we provide [a training script](./train/models/dpo_llava.sh) to train the model using LoRA. Run the following command to start lora training.
 
-      - Other models
-  
-        For **LLaVA-v1.6**, **Qwen2-VL**, or **Qwen2.5-VL**, we adopt the widely used fine-tuning framework [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) to implement our method, aiming for broader applicability across various scenarios.
+      ```bash
+      export INPUT_MODEL=/your/path/to/llava-v1.5-7b/or/13b
+      export TRAINING_DATA_PATH=/your/path/to/taining/data/file
+      export OUTPUT_NAME=/the/name/of/directory/to/save
+      export VISUAL_GENOME_PATH=/your/path/to/visual/genome
+      bash "train/models/dpo_llava.sh"
+      ```
 
-        Please refer to [Train SENTINEL via LLaMA-Factory](llamafactory/README.md) for the training process.
+      The final weights will be saved in the `./train/results/${OUTPUT_NAME}` directory.
+
+    - Other models
+
+      For **LLaVA-v1.6**, **Qwen2-VL**, or **Qwen2.5-VL**, we adopt the widely used fine-tuning framework [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) to implement our method, aiming for broader applicability across various scenarios.
+
+      Please refer to [Train SENTINEL via LLaMA-Factory](llamafactory/README.md) for the training process.
 
 ## 📈 Evaluation
 
@@ -293,3 +289,11 @@ If you find our model/code/data/paper helpful, please consider cite our papers �
   year={2025}
 }
 ```
+
+## 📧 Contact us <!-- omit in toc -->
+
+If you have any questions, comments, or suggestions, please do not hesitate to submit an issue or PR to help advance research in this area.
+
+## License <!-- omit in toc -->
+
+[Apache License 2.0](/LICENSE)

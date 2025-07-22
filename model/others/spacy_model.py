@@ -16,10 +16,10 @@ class SpacyModel:
         logger: Logger | None = None,
     ):
         """
-        初始化 Spacy 模型，根据指定的大小加载不同的模型。
+        Initialize Spacy model and load different models according to the specified size.
 
         Args:
-            model_size: 模型大小，可以是 "sm", "md", "lg" 或 "trf"。
+            model_size: Model size, can be "sm", "md", "lg" or "trf".
         """
         assert model_size in ["sm", "md", "lg", "trf"], "Invalid model size. Choose from 'sm', 'md', 'lg 'or 'trf'."
 
@@ -38,7 +38,7 @@ class SpacyModel:
 
     def _load(self) -> Language:
         """
-        加载 Spacy 模型。
+        Load Spacy model.
         """
 
         import spacy
@@ -95,11 +95,12 @@ class SpacyModel:
         self._coref_cfg = {
             "fastcoref": {"resolve_text": True},
         }
-        self._noun_pos: list[str] = ["NOUN", "PROPN"]  # Spacy 的词性标记：NOUN 是普通名词，PROPN 是专有名词
+        # Spacy POS tags: NOUN is common noun, PROPN is proper noun
+        self._noun_pos: list[str] = ["NOUN", "PROPN"]
 
     def _load_fastcoref(self):
         """
-        加载 fastcoref 模型，用于指代消解。
+        Load fastcoref model for coreference resolution.
         """
         from fastcoref.spacy_component import FastCorefResolver  # noqa: F401
 
@@ -115,13 +116,13 @@ class SpacyModel:
 
     def resolve_coref(self, text: list[str] | str, force_list: bool = False) -> list[str] | str:
         """
-        输入原始的文本，返回指代消解后的文本。执行一次指代消解大约需要 0.5s。
+        Input raw text, return text after coreference resolution. Each resolution takes about 0.5s.
 
         Args:
-            text: 要解析的文本。
-            force_list: 如果为 True，返回一个列表，即使只有一个输入文本。
+            text: Text to be resolved.
+            force_list: If True, always return a list even for single input.
         Returns:
-            list[str] | str: 指代消解后的文本
+            list[str] | str: Text after coreference resolution
         """
 
         if not self._loaded_fastcoref:
@@ -134,35 +135,14 @@ class SpacyModel:
 
         return maybe_return_ls(force_list, resolved_text)
 
-    def get_simi(self, text1: str | Doc, text2: str | Doc) -> float:
-        """
-        计算两个文本的相似度。
-        """
-        text1_str = text1 if isinstance(text1, str) else text1.text
-        text2_str = text2 if isinstance(text2, str) else text2.text
-
-        if (text1_str, text2_str) in self._similarity_cache:
-            return self._similarity_cache[(text1_str, text2_str)]
-
-        doc1: Doc = self.process_text(text1) if isinstance(text1, str) else text1
-        doc2: Doc = self.process_text(text2) if isinstance(text2, str) else text2
-        if doc1 and doc1.vector_norm and doc2 and doc2.vector_norm:
-            similarity: float = doc1.similarity(doc2)
-        else:
-            similarity = 0.0
-
-        self._similarity_cache[(text1_str, text2_str)] = similarity
-        self._similarity_cache[(text2_str, text1_str)] = similarity
-        return similarity
-
     def process_text(self, text: list[str] | str) -> list[Doc] | Doc:
         """
-        处理文本，返回 Spacy 的 Doc 对象，如果输入是列表，则返回一个 Doc 对象列表。
+        Process text and return Spacy Doc object. If input is a list, return a list of Doc objects.
 
         Args:
-            text: 要处理的文本。
+            text: Text to process.
         Returns:
-            list[Doc] | Doc: 处理后的文本。
+            list[Doc] | Doc: Processed text.
         """
         if isinstance(text, list):  # 并行处理，提高速度
             return list(self.nlp.pipe(text, disable=self._others_disable))
@@ -174,7 +154,7 @@ class SpacyModel:
 
     def is_noun(self, word: str | Token | Doc) -> bool:
         """
-        检查给定的单词是否是名词（如果用于检查句子，句子中只要有一个名词就返回 True）。
+        Check if the given word is a noun (if checking a sentence, returns True if any word is a noun).
         """
         word_text: str = word.text if isinstance(word, (Token, Doc)) else word
 
@@ -195,7 +175,7 @@ class SpacyModel:
 
     def extract_nouns_from_text(self, text: str) -> list[str]:
         """
-        从文本中提取名词（需要 pipeline 中包含 parser 组件）。
+        Extract nouns from text (requires parser component in pipeline).
         """
         # 注：这样会包括名词的修饰部分，包括冠词、形容词等，需要注意
         doc: Doc = self.process_text(text)
@@ -203,12 +183,12 @@ class SpacyModel:
 
     def lemma(self, word: str) -> str:
         """
-        输入一个单词或短语，获取最后一个单词的词干，并返回处理过后的整个短语。
+        Input a word or phrase, get the lemma of the last word, and return the processed phrase.
 
         Args:
-            word: 要获取词干的单词或短语。
+            word: Word or phrase to get lemma for.
         Returns:
-            str: 输入单词或短语，其中最后一个单词被替换为其词干。
+            str: Input word or phrase with the last word replaced by its lemma.
         """
         if word in self._lemma_cache:
             return self._lemma_cache[word]

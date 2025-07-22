@@ -18,7 +18,7 @@
 **[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN) \* <sup>1</sup>**, **[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ) \* <sup>2</sup>**, **[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ) <sup>3</sup>**, **[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN) <sup>1</sup>**<sup>✉️</sup>  
 <sup>1</sup>Harbin Institute of Technology, Shenzhen  
 <sup>2</sup>The Chinese University of Hong Kong  
-<sup>3</sup>The Chinese University of Hong Kong, Shenzhen  
+<sup>3</sup>The Chinese University of Hong Kong, Shenzhen
 
 \* Equal contribution.  
 <sup>✉️</sup> Corresponding author: tianzhuotao@hit.edu.cn.
@@ -26,6 +26,7 @@
 </div>
 
 ## 🎊 新闻 <!-- omit in toc -->
+
 - [2025.07.21] 所有代码、数据和模型已发布！
 - [2025.06.26] 🎉 我们的 SENTINEL 被 **ICCV 2025** 接收！
 
@@ -50,28 +51,28 @@
 
 ## 🔑 主要特性
 
-- 🧠 **早期干预阻断幻觉传播**。我们发现 MLLMs 的幻觉主要在前几句中产生，并在后续输出中不断传播。SENTINEL 提前打断该链条，以最大程度地缓解幻觉。  
+- 🧠 **早期干预阻断幻觉传播**。我们发现 MLLMs 的幻觉主要在前几句中产生，并在后续输出中不断传播。SENTINEL 提前打断该链条，以最大程度地缓解幻觉。
 <table align="center">
     <p align="center">
       <img src="/docs/figures/figure2.png" width="80%" />
     </p>
 </table>
 
-- 🔍 **无需人工标注的域内上下文偏好学习**。SENTINEL 通过检测器交叉验证构造*幻觉/真实*样本，并在不依赖专有 LLM 或手动标注的情况下构建域内偏好数据。  
+- 🔍 **无需人工标注的域内上下文偏好学习**。SENTINEL 通过检测器交叉验证构造*幻觉/真实*样本，并在不依赖专有 LLM 或手动标注的情况下构建域内偏好数据。
 <table align="center">
     <p align="center">
       <img src="/docs/figures/figure3.png" width="80%" />
     </p>
 </table>
 
-- 💡 **上下文至关重要：丰富的连贯性提升鲁棒性**。通过优先选择上下文连贯的正样本，SENTINEL 显著提升了泛化能力。  
+- 💡 **上下文至关重要：丰富的连贯性提升鲁棒性**。通过优先选择上下文连贯的正样本，SENTINEL 显著提升了泛化能力。
 <table align="center">
     <p align="center">
       <img src="/docs/figures/figure4.png" width="80%" />
     </p>
 </table>
 
-- ♻️ **迭代式上下文自举，生成多样无幻觉上下文**。我们的框架动态地扩展非幻觉上下文，覆盖更多场景，提升模型在推理阶段的鲁棒性。  
+- ♻️ **迭代式上下文自举，生成多样无幻觉上下文**。我们的框架动态地扩展非幻觉上下文，覆盖更多场景，提升模型在推理阶段的鲁棒性。
 <table align="center">
     <p align="center">
       <img src="/docs/figures/figure5.png" width="80%" />
@@ -79,7 +80,7 @@
 </table>
 
 - 📊 **各基准测试中达到优秀水平**。  
-SENTINEL 在减少幻觉方面最多可达 **92%** 的降低，并在 Object HalBench、AMBER 和 HallusionBench 上超越先前 SOTA 方法，同时保持或提升通用任务性能。  
+SENTINEL 在减少幻觉方面最多可达 **92%** 的降低，并在 Object HalBench、AMBER 和 HallusionBench 上超越先前 SOTA 方法，同时保持或提升通用任务性能。
 <table align="center">
     <p align="center">
       <img src="/docs/figures/table1.png" width="80%" />
@@ -97,15 +98,15 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
 
 包含以下部分：
 
-* `image_data.jsonl` 文件  
+- `image_data.jsonl` 文件
 
-  该文件包含从 Visual Genome 数据集中筛选的开源图像，仅包含 `image_id`、`image_path` 和 `question` 三个字段，用于构建图像描述任务的偏好训练数据。  
+  该文件包含从 Visual Genome 数据集中筛选的开源图像，仅包含 `image_id`、`image_path` 和 `question` 三个字段，用于构建图像描述任务的偏好训练数据。
 
   **注意**：使用此文件数据时，请将 `image_path` 字段替换为本地 Visual Genome 数据集的路径。
 
-* `<model_name>.json` 文件  
+- `<model_name>.json` 文件
 
-  这些文件是训练数据构建步骤生成的偏好训练集，每个文件对应特定模型，包含进行 **C-DPO 训练** 所需的字段，如 `"question"`、`"context"`、`"y_win"` 和 `"y_lose"`。  
+  这些文件是训练数据构建步骤生成的偏好训练集，每个文件对应特定模型，包含进行 **C-DPO 训练** 所需的字段，如 `"question"`、`"context"`、`"y_win"` 和 `"y_lose"`。
 
 <table align="center">
     <p align="center">
@@ -130,51 +131,52 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
 
 ## 💻 环境配置
 
-1. 克隆本仓库并进入 *SENTINEL* 目录
+1. 克隆本仓库并进入 _SENTINEL_ 目录
 
-    ```bash
-    git clone https://github.com/pspdada/SENTINEL.git --depth=1
-    cd SENTINEL
-    ```
+   ```bash
+   git clone https://github.com/pspdada/SENTINEL.git --depth=1
+   cd SENTINEL
+   ```
 
 2. 安装依赖
 
-    ```bash
-    conda create -y -n SENTINEL python=3.10
-    conda activate SENTINEL
-    pip install -r requirements.txt
-    pip install -U flash-attn --no-build-isolation
-    ```
+   ```bash
+   conda create -y -n SENTINEL python=3.10
+   conda activate SENTINEL
+   pip install -r requirements.txt
+   pip install -U flash-attn --no-build-isolation
+   ```
 
-3. 安装额外依赖  
-    <details>
-    <summary>详情</summary>
+3. 安装额外依赖
+   <details>
+   <summary>详情</summary>
 
-    下载 NLTK 数据包
+   下载 NLTK 数据包
 
-    ```python
-    import nltk
-    nltk.download("wordnet")
-    nltk.download("punkt_tab")
-    nltk.download("cmudict")
-    nltk.download("averaged_perceptron_tagger_eng")
-    ```
+   ```python
+   import nltk
+   nltk.download("wordnet")
+   nltk.download("punkt_tab")
+   nltk.download("cmudict")
+   nltk.download("averaged_perceptron_tagger_eng")
+   ```
 
-    下载 Spacy 包
+   下载 Spacy 包
 
-    ```bash
-    pip install -U pip setuptools wheel
-    pip install 'spacy[cuda12x]==3.8.0'
-    python -m spacy download en_core_web_md    # 用于生成训练数据
-    python -m spacy download en_core_web_trf   # 用于 Object Halbench 评估
-    ```
+   ```bash
+   pip install -U pip setuptools wheel
+   pip install 'spacy[cuda12x]==3.8.0'
+   python -m spacy download en_core_web_md    # 用于生成训练数据
+   python -m spacy download en_core_web_trf   # 用于 Object Halbench 评估
+   ```
 
-    安装 YOLO 模型依赖：
+   安装 YOLO 模型依赖：
 
-    ```bash
-    pip install git+https://github.com/openai/CLIP.git
-    ```
-    </details>
+   ```bash
+   pip install git+https://github.com/openai/CLIP.git
+   ```
+
+   </details>
 
 ## 🔨 数据生成
 
@@ -182,51 +184,53 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
 
 1. （可选）检查 `.env` 文件
 
-    可查看 <a href="./utils/.env">.env</a> 配置环境变量。文件在运行时自动加载，大多数项默认注释，可按需修改。
+   可查看 <a href="./utils/.env">.env</a> 配置环境变量。文件在运行时自动加载，大多数项默认注释，可按需修改。
 
 2. 选择用于生成数据的模型
 
-    需选择某个 MLLM 来生成针对该模型的训练数据。我们已支持 LLaVA-v1.5、LLaVA-v1.6 和 Qwen-VL 系列。
+   需选择某个 MLLM 来生成针对该模型的训练数据。我们已支持 LLaVA-v1.5、LLaVA-v1.6 和 Qwen-VL 系列。
 
-    可通过修改 [`utils/setup_utils.py`](./utils/setup_utils.py) 中的 `--model` 参数切换模型，更多细节请参阅 [`model/generator`](./model/generator) 目录。
+   可通过修改 [`utils/setup_utils.py`](./utils/setup_utils.py) 中的 `--model` 参数切换模型，更多细节请参阅 [`model/generator`](./model/generator) 目录。
 
 3. 下载 [Visual Genome](https://homes.cs.washington.edu/~ranjay/visualgenome/api.html) 图像，以及用于数据生成的 [dataset](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/image_data.jsonl)，并放置于 [`dataset`](dataset) 目录中。
 
 4. 生成训练数据
 
-    运行以下命令，将结果保存在 `./results` 目录：
+   运行以下命令，将结果保存在 `./results` 目录：
 
-    ```bash
-    python main.py
-    ```
+   ```bash
+   python main.py
+   ```
 
-5. 数据生成完成  
+5. 数据生成完成
 
-    <details>
-    <summary>生成数据详情</summary>
+   <details>
+   <summary>生成数据详情</summary>
 
-    生成的文件包含两个 `.jsonl` 文件：
+   生成的文件包含两个 `.jsonl` 文件：
 
-    - `<model_name>.jsonl`：用于分析的辅助文件，每行对应一张图像的生成结果，包含：
-      - `sentences_cnt`：描述该图像的句子总数  
-      - `hallu_objects`：采样过程中生成的幻觉物体总数  
-      - `uncertain_objects`：不确定物体数  
-      - `nonhallu_objects`：非幻觉物体数  
+   - `<model_name>.jsonl`：用于分析的辅助文件，每行对应一张图像的生成结果，包含：
 
-    - `<model_name>_data_pair.jsonl`：偏好样本对文件，每行是一组样本对，包含 `"image_path"`、`"context"`、`"y_win"`、`"y_lose"` 等字段，以及用于分析的附加字段。
-    </details>
+     - `sentences_cnt`：描述该图像的句子总数
+     - `hallu_objects`：采样过程中生成的幻觉物体总数
+     - `uncertain_objects`：不确定物体数
+     - `nonhallu_objects`：非幻觉物体数
+
+   - `<model_name>_data_pair.jsonl`：偏好样本对文件，每行是一组样本对，包含 `"image_path"`、`"context"`、`"y_win"`、`"y_lose"` 等字段，以及用于分析的附加字段。
+   </details>
 
 6. 将训练样本转换为所需格式
 
-   - 若使用 **LLaVA-v1.5**，请用 [`utils/get_llava_v15_data_pair.py`](./utils/get_llava_v15_data_pair.py) 转换，以保持与原仓库一致。  
+   - 若使用 **LLaVA-v1.5**，请用 [`utils/get_llava_v15_data_pair.py`](./utils/get_llava_v15_data_pair.py) 转换，以保持与原仓库一致。
    - 若使用 **LLaVA-v1.6**、**Qwen2-VL** 或 **Qwen2.5-VL**，请用 [`utils/get_llama_factory_data_pair.py`](./utils/get_llama_factory_data_pair.py) 转换为 **LLaMA-Factory** 格式。
 
 ## ⚙️ 训练
 
 1. **准备数据**
 
-   - 训练数据  
-     - 若想复现我们的实验，可使用我们构建的 [SENTINEL 数据集](https://huggingface.co/datasets/psp-dada/SENTINEL)。  
+   - 训练数据
+
+     - 若想复现我们的实验，可使用我们构建的 [SENTINEL 数据集](https://huggingface.co/datasets/psp-dada/SENTINEL)。
      - 若想自建数据集，可使用上节生成的数据。
 
    - 图像数据  
@@ -259,13 +263,13 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
 
 ## 🙏 致谢 <!-- omit in toc -->
 
-- [LLaVA](https://github.com/haotian-liu/LLaVA)：提供了 LLaVA-v1.5 模型的出色的 MLLM 开源项目。  
-- [HA-DPO](https://github.com/opendatalab/HA-DPO)：一个对多模态模型物体幻觉领域有较大贡献的仓库，我们 LLaVA-v1.5 部分代码基于此。  
+- [LLaVA](https://github.com/haotian-liu/LLaVA)：提供了 LLaVA-v1.5 模型的出色的 MLLM 开源项目。
+- [HA-DPO](https://github.com/opendatalab/HA-DPO)：一个对多模态模型物体幻觉领域有较大贡献的仓库，我们 LLaVA-v1.5 部分代码基于此。
 - [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)：统一高效的大模型微调框架，我们的 LLaVA-v1.6、Qwen2-VL 和 Qwen2.5-VL 实现基于此。
 
 ## 📝 引用
 
-如果我们的模型/代码/数据/论文对您有帮助，请引用我们的论文并为我们点⭐️！
+如果我们的模型/代码/数据/论文对您有帮助，请引用我们的论文并为我们点 ⭐️！
 
 ```bibtex
 @article{peng2025mitigating,
@@ -275,3 +279,11 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
   year={2025}
 }
 ```
+
+## 📧 联系我们 <!-- omit in toc -->
+
+如果您有任何问题、意见或建议，欢迎提交 issue 或 PR，共同推动该方向的研究进展。
+
+## License <!-- omit in toc -->
+
+[Apache License 2.0](/LICENSE)

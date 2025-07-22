@@ -27,12 +27,18 @@ class Qwen2VLModel:
         logger: Logger | None = None,
     ):
         """
-        初始化 Qwen2VL 模型，根据版本和大小加载不同的模型。
+        Initialize Qwen2-VL model, load different models according to size.
 
         Args:
-            size: 模型大小，'2B'，'7B' 或 '72B'。
-            model_dir: 模型缓存目录。
-            device: 使用的设备（CPU 或 GPU）。
+            use_vllm (bool): Whether to use vLLM.
+            debug (bool): Whether to enable debug mode.
+            model_size (str): Model size, '2B' or '7B'.
+            model_dir (str): Model cache directory.
+            seed (int): Random seed.
+            gpu_util (float): GPU memory utilization.
+            torch_dtype (torch.dtype): PyTorch data type.
+            device (str): Device to use (CPU or GPU).
+            logger (Logger | None): Logger.
         """
         assert model_size in [
             "2B",
@@ -69,8 +75,8 @@ class Qwen2VLModel:
     def _create_vllm(self) -> list[LLM, Qwen2VLProcessor]:
         from ..utils.gen_utils import init_vllm
 
-        model_name = f"/home/zhuotaotian/psp/llm/utils/models/repo/Qwen2-VL-2B-Instruct"
-
+        model_name = f"Qwen/Qwen2-VL-{self.model_size}-Instruct"
+        
         llm: LLM = init_vllm(
             model_name,
             self.model_dir,
@@ -124,14 +130,14 @@ class Qwen2VLModel:
         single_sentence: bool = False,
     ) -> list[str] | list[list[str]]:
         """
-        生成图片的描述。
+        Generate responses based on input images and prompts.
         """
         from ..utils.gen_utils import gen_hf, gen_vllm, u_a_to_prompts
         from ..utils.utils import ensure_lists
 
         images, users, assistants = ensure_lists(images, users, assistants)
 
-        # modifier 去掉 <|im_end|>\n 共 11 个字符
+        # modifier: remove <|im_end|>\n 11 characters
         prompts: list[str] = u_a_to_prompts(users, assistants, self.processor, lambda x: x[:-11])
         stop_token_ids = self.stop_ids if single_sentence else self.eos_id
         if self.use_vllm:

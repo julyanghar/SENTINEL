@@ -30,7 +30,7 @@ def parse_arg() -> Namespace:
             "Qwen2_5_VL_7B",
         ],
     )
-    
+
     # <--- Uninportant --->
     # log level
     parser.add_argument("--log_level", type=str, default="INFO", choices=["INFO", "WARNING"])
