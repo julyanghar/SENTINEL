@@ -15,12 +15,16 @@
 
 <a href="/docs/README_zh.md">中文</a> | <b>English</b>
 
-**[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN) \* <sup>1</sup>**, **[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ) \* <sup>2</sup>**, **[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ) <sup>3</sup>**, **[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN) <sup>1</sup>**<sup>✉️</sup>
-<sup>1</sup>Harbin Institute of Technology, Shenzhen
-<sup>2</sup>The Chinese University of Hong Kong
+**[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN)\*<sup>1</sup>**,&emsp;
+**[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ)\*<sup>2</sup>**,&emsp;
+**[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ)<sup>3</sup>**,&emsp;
+**[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN)<sup>1</sup>**<sup>✉️</sup>
+
+<sup>1</sup>Harbin Institute of Technology, Shenzhen<br>
+<sup>2</sup>The Chinese University of Hong Kong<br>
 <sup>3</sup>The Chinese University of Hong Kong, Shenzhen
 
-\* Equal contribution.
+\* Equal contribution.<br>
 <sup>✉️</sup> Corresponding author: tianzhuotao@hit.edu.cn.
 
 </div>
@@ -210,7 +214,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
     <details>
     <summary>Generated Data Details</summary>
 
-      The generated data includes two `.jsonl` files:
+   The generated data includes two `.jsonl` files:
    - One is `<model_name>.jsonl`, which is an auxiliary file used for analysis and **not** for constructing preference pairs. Each line corresponds to the result for one image and includes:
      - `sentences_cnt`: the total number of sentences describing the image
      - `hallu_objects`: the total number of hallucinated objects generated during model sampling
