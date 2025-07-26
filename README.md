@@ -187,7 +187,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
 
 ## 🔨 Data Generation
 
-> Skip if you only want to use our released dataset.
+> Skip this step if you only want to use our released dataset.
 
 1. (Optional) Check the .env file
 
@@ -224,7 +224,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
    </details>
 
 6. Convert Training Samples into Required Format
-   - If you want to train **LLaVA-v1.5**, use [`get_llava_v15_data_pair.py`](./utils/get_llava_v15_data_pair.py) to perform the conversion, in order to stay consistent with the original repository.
+   - If you want to train **LLaVA-v1.5**, use [`get_llava_v15_data_pair.py`](./utils/get_llava_v15_data_pair.py) to perform the conversion, to stay consistent with the original repository.
 
    - If you want to use **LLaVA-v1.6**, **Qwen2-VL**, or **Qwen2.5-VL**, you need to convert the training data into the **LLaMA-Factory** format. You can use [`get_llama_factory_data_pair.py`](./utils/get_llama_factory_data_pair.py) for the conversion.
 
