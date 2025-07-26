@@ -266,7 +266,8 @@ We provide the model weights mentioned in our paper, all of which are trained us
 ## 📈 Evaluation
 
 We strictly follow the official [LLaVA](https://github.com/haotian-liu/LLaVA) evaluation settings to ensure a fair comparison. You can refer to the [official guide](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md) for details.
-For more information, please see our [Evaluation README](/docs/Evaluation.md).
+
+**For more information, please see our [Evaluation README file](/docs/Evaluation.md).**
 
 ## 🙏 Acknowledgement <!-- omit in toc -->
 

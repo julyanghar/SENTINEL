@@ -257,7 +257,8 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
 ## 📈 评估
 
 我们严格遵循官方 [LLaVA](https://github.com/haotian-liu/LLaVA) 评估设置，以确保公平比较。详情请参阅官方指南：[Evaluation.md](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md)。
-更多信息请见我们的 [评估说明](/docs/Evaluation.md)。
+
+**更多信息请见我们的 [评估说明](/docs/Evaluation.md)。**
 
 ## 🙏 致谢 <!-- omit in toc -->
 
