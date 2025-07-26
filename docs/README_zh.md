@@ -15,12 +15,12 @@
 
 <b>中文</b> | <a href="/README.md">English</a>
 
-**[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN) \* <sup>1</sup>**, **[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ) \* <sup>2</sup>**, **[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ) <sup>3</sup>**, **[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN) <sup>1</sup>**<sup>✉️</sup>  
-<sup>1</sup>Harbin Institute of Technology, Shenzhen  
-<sup>2</sup>The Chinese University of Hong Kong  
+**[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN) \* <sup>1</sup>**, **[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ) \* <sup>2</sup>**, **[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ) <sup>3</sup>**, **[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN) <sup>1</sup>**<sup>✉️</sup>
+<sup>1</sup>Harbin Institute of Technology, Shenzhen
+<sup>2</sup>The Chinese University of Hong Kong
 <sup>3</sup>The Chinese University of Hong Kong, Shenzhen
 
-\* Equal contribution.  
+\* Equal contribution.
 <sup>✉️</sup> Corresponding author: tianzhuotao@hit.edu.cn.
 
 </div>
@@ -79,7 +79,7 @@
     </p>
 </table>
 
-- 📊 **各基准测试中达到优秀水平**。  
+- 📊 **各基准测试中达到优秀水平**。
 SENTINEL 在减少幻觉方面最多可达 **92%** 的降低，并在 Object HalBench、AMBER 和 HallusionBench 上超越先前 SOTA 方法，同时保持或提升通用任务性能。
 <table align="center">
     <p align="center">
@@ -119,15 +119,15 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
 
 我们提供了论文中提到的所有模型权重，均通过 **LoRA** 训练。可直接插入对应基础模型进行推理或进一步微调。
 
-| 基础模型               | 训练数据量 | LoRA  |                                                                                                                                下载                                                                                                                                 |
-| ---------------------- | ---------- | :---: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| LLaVA-v1.5-7B          | 8.6K       |   ✅   |            [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.5-7b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_7b_SENTINEL_8_6k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-7B-SENTINEL)            |
-| LLaVA-v1.5-13B         | 7.0K       |   ✅   |           [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.5-13b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-13B-SENTINEL)            |
-| LLaVA-v1.6-Vicuna-7B   | 7.0K       |   ✅   |  [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-7b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_7b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-7B-SENTINEL)   |
-| LLaVA-v1.6-Vicuna-13B  | 7.0K       |   ✅   | [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-13b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-13B-SENTINEL) |
-| Qwen2-VL-2B-Instruct   | 12K        |   ✅   |         [🤗 基础模型](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_2B_Instruct_SENTINEL_12k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-2B-SENTINEL)          |
-| Qwen2-VL-7B-Instruct   | 7.0K       |   ✅   |          [🤗 基础模型](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-7B-SENTINEL)          |
-| Qwen2.5-VL-7B-Instruct | 7.0K       |   ✅   |       [🤗 基础模型](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_5_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2.5-VL-7B-SENTINEL)       |
+| 基础模型               | 训练数据量 | LoRA |                                                                                                                                  下载                                                                                                                                  |
+| ---------------------- | ---------- | :--: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| LLaVA-v1.5-7B          | 8.6K       |  ✅  |            [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.5-7b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_7b_SENTINEL_8_6k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-7B-SENTINEL)            |
+| LLaVA-v1.5-13B         | 7.0K       |  ✅  |           [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.5-13b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-13B-SENTINEL)            |
+| LLaVA-v1.6-Vicuna-7B   | 7.0K       |  ✅  |  [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-7b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_7b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-7B-SENTINEL)   |
+| LLaVA-v1.6-Vicuna-13B  | 7.0K       |  ✅  | [🤗 基础模型](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-13b) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-13B-SENTINEL) |
+| Qwen2-VL-2B-Instruct   | 12K        |  ✅  |         [🤗 基础模型](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_2B_Instruct_SENTINEL_12k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-2B-SENTINEL)          |
+| Qwen2-VL-7B-Instruct   | 7.0K       |  ✅  |          [🤗 基础模型](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-7B-SENTINEL)          |
+| Qwen2.5-VL-7B-Instruct | 7.0K       |  ✅  |       [🤗 基础模型](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) / [📄 数据](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_5_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2.5-VL-7B-SENTINEL)       |
 
 ## 💻 环境配置
 
@@ -208,9 +208,7 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
    <summary>生成数据详情</summary>
 
    生成的文件包含两个 `.jsonl` 文件：
-
    - `<model_name>.jsonl`：用于分析的辅助文件，每行对应一张图像的生成结果，包含：
-
      - `sentences_cnt`：描述该图像的句子总数
      - `hallu_objects`：采样过程中生成的幻觉物体总数
      - `uncertain_objects`：不确定物体数
@@ -220,26 +218,22 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
    </details>
 
 6. 将训练样本转换为所需格式
-
    - 若使用 **LLaVA-v1.5**，请用 [`utils/get_llava_v15_data_pair.py`](./utils/get_llava_v15_data_pair.py) 转换，以保持与原仓库一致。
    - 若使用 **LLaVA-v1.6**、**Qwen2-VL** 或 **Qwen2.5-VL**，请用 [`utils/get_llama_factory_data_pair.py`](./utils/get_llama_factory_data_pair.py) 转换为 **LLaMA-Factory** 格式。
 
 ## ⚙️ 训练
 
 1. **准备数据**
-
    - 训练数据
-
      - 若想复现我们的实验，可使用我们构建的 [SENTINEL 数据集](https://huggingface.co/datasets/psp-dada/SENTINEL)。
      - 若想自建数据集，可使用上节生成的数据。
 
-   - 图像数据  
+   - 图像数据
      我们使用 Visual Genome 数据集中的图像进行训练，可从 [Visual Genome](https://homes.cs.washington.edu/~ranjay/visualgenome/api.html) 下载并记录路径。
 
 2. **训练**
-
-   - LLaVA-v1.5  
-     我们基于 HA-DPO 库（其本身基于官方 LLaVA-v1.5 实现）进行修改，以便与先前工作进行公平对比。  
+   - LLaVA-v1.5
+     我们基于 HA-DPO 库（其本身基于官方 LLaVA-v1.5 实现）进行修改，以便与先前工作进行公平对比。
      提供了 [训练脚本](./train/models/dpo_llava.sh)，运行以下命令开始 LoRA 训练：
 
      ```bash
@@ -252,13 +246,13 @@ SENTINEL 数据集记录了 `LLaVA-v1.5`、`LLaVA-v1.6`、`Qwen2-VL` 和 `Qwen2.
 
      最终权重将保存在 `./train/results/${OUTPUT_NAME}` 目录中。
 
-   - 其他模型  
-     对于 **LLaVA-v1.6**、**Qwen2-VL** 或 **Qwen2.5-VL**，我们采用通用的微调框架 [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) 实现方法。  
+   - 其他模型
+     对于 **LLaVA-v1.6**、**Qwen2-VL** 或 **Qwen2.5-VL**，我们采用通用的微调框架 [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) 实现方法。
      训练流程请参阅 [Train SENTINEL via LLaMA-Factory](llamafactory/README.md)。
 
 ## 📈 评估
 
-我们严格遵循官方 [LLaVA](https://github.com/haotian-liu/LLaVA) 评估设置，以确保公平比较。详情请参阅官方指南：[Evaluation.md](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md)。  
+我们严格遵循官方 [LLaVA](https://github.com/haotian-liu/LLaVA) 评估设置，以确保公平比较。详情请参阅官方指南：[Evaluation.md](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md)。
 更多信息请见我们的 [评估说明](/docs/Evaluation.md)。
 
 ## 🙏 致谢 <!-- omit in toc -->

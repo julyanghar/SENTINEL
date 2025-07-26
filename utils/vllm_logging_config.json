@@ -16,9 +16,7 @@
   },
   "loggers": {
     "vllm": {
-      "handlers": [
-        "stdout"
-      ],
+      "handlers": ["stdout"],
       "level": "WARNING",
       "propagage": false
     }

@@ -26,6 +26,7 @@ from run.utils import (  # noqa
 
 DEBUG = True  # 调试模式
 HALLUCI_CONTEXT = False  # 是否使用含幻觉的句子添加到 context
+CHECK_TYPE = "any"
 
 
 def save_data_state(
@@ -134,7 +135,7 @@ def maybe_build_pair(
 
     success_explore_candidates, normal_nonhallu_candidates = [], []
     for idx, objects in nonhallu_candidates:
-        if not objects_in_set(objects, s.context_gen_objects, spacy, wn, inv_synonym_map, check_type="all"):
+        if not objects_in_set(objects, s.context_gen_objects, spacy, wn, inv_synonym_map, check_type=CHECK_TYPE):
             success_explore_candidates.append((idx, objects))
         else:
             normal_nonhallu_candidates.append((idx, objects))
@@ -159,7 +160,7 @@ def maybe_build_pair(
             return random.choice(range(len(new_sentences)))
 
 
-def run_build_dataset(datalist: list[DataPoint], batch_size: int) -> None:
+def run_gen_dataset(datalist: list[DataPoint], batch_size: int) -> None:
     logger, save_path, model_dir, alter_device = GVars.logger, GVars.save_path, GVars.model_dir, GVars.alter_device
     generator = get_generator(use_vllm=True, debug=DEBUG)
 

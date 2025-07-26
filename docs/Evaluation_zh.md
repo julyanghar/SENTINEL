@@ -13,13 +13,15 @@
 ### Object Halbench
 
 1. 准备 COCO2014 标注文件
+
    ```shell
     mkdir llava/data/MSCOCO/coco2014
     cd llava/data/MSCOCO/coco2014
 
     wget -c http://images.cocodataset.org/annotations/annotations_trainval2014.zip
     unzip annotations_trainval2014.zip
-    ```
+   ```
+
 2. 按照 [说明](https://github.com/RLHF-V/RLHF-V?tab=readme-ov-file#object-halbench) 下载问题文件，并放置到 [`llava/data/eval/object_halbench`](/llava/data/eval/object_halbench) 下，文件名应为 `Object_HalBench.jsonl`。
 
 3. 使用 [`llava/eval_script/eval_object_halbench.sh`](/llava/eval_script/eval_object_halbench.sh) 进行推理。

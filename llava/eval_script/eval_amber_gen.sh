@@ -13,7 +13,7 @@ IMAGE_FOLDER_DIR="$AMBER_DIR/images"
 QUESTION_FILE="$AMBER_DATA_DIR/query/query_generative.json"
 
 AMBER_EVAL_FILE="llava/eval/utils/eval_amber.py"
-    
+
 IFS=',' read -ra GPULIST <<<"$GPU_LIST"
 CHUNKS=${#GPULIST[@]}
 for IDX in $(seq 0 $((CHUNKS - 1))); do

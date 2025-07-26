@@ -1,3 +1,6 @@
+# dependencies
+node_modules/
+
 # User-specific files
 dataset/*.jsonl
 .vscode/

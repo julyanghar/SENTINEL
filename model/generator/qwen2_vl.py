@@ -76,7 +76,7 @@ class Qwen2VLModel:
         from ..utils.gen_utils import init_vllm
 
         model_name = f"Qwen/Qwen2-VL-{self.model_size}-Instruct"
-        
+
         llm: LLM = init_vllm(
             model_name,
             self.model_dir,

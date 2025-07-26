@@ -15,12 +15,12 @@
 
 <a href="/docs/README_zh.md">中文</a> | <b>English</b>
 
-**[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN) \* <sup>1</sup>**, **[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ) \* <sup>2</sup>**, **[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ) <sup>3</sup>**, **[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN) <sup>1</sup>**<sup>✉️</sup>  
-<sup>1</sup>Harbin Institute of Technology, Shenzhen  
-<sup>2</sup>The Chinese University of Hong Kong  
+**[Shangpin Peng](https://scholar.google.com/citations?user=mKnBrRAAAAAJ&hl=zh-CN) \* <sup>1</sup>**, **[Senqiao Yang](https://scholar.google.com/citations?user=NcJc-RwAAAAJ) \* <sup>2</sup>**, **[Li Jiang](https://scholar.google.com/citations?user=5cIodxsAAAAJ) <sup>3</sup>**, **[Zhuotao Tian](https://scholar.google.com/citations?user=mEjhz-IAAAAJ&hl=zh-CN) <sup>1</sup>**<sup>✉️</sup>
+<sup>1</sup>Harbin Institute of Technology, Shenzhen
+<sup>2</sup>The Chinese University of Hong Kong
 <sup>3</sup>The Chinese University of Hong Kong, Shenzhen
 
-\* Equal contribution.  
+\* Equal contribution.
 <sup>✉️</sup> Corresponding author: tianzhuotao@hit.edu.cn.
 
 </div>
@@ -123,15 +123,15 @@ It contains the following components:
 
 We provide the model weights mentioned in our paper, all of which are trained using **LoRA**. These weights can be seamlessly plugged into the corresponding base models for inference or further fine-tuning.
 
-| Base Model             | Training Data Size | LoRA  |                                                                                                                            Download                                                                                                                             |
-| ---------------------- | ------------------ | :---: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| LLaVA-v1.5-7B          | 8.6K               |   ✅   |            [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.5-7b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_7b_SENTINEL_8_6k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-7B-SENTINEL)            |
-| LLaVA-v1.5-13B         | 7.0K               |   ✅   |           [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.5-13b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-13B-SENTINEL)            |
-| LLaVA-v1.6-Vicuna-7B   | 7.0K               |   ✅   |  [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-7b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_7b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-7B-SENTINEL)   |
-| LLaVA-v1.6-Vicuna-13B  | 7.0K               |   ✅   | [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-13b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-13B-SENTINEL) |
-| Qwen2-VL-2B-Instruct   | 12K                |   ✅   |         [🤗 Base](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_2B_Instruct_SENTINEL_12k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-2B-SENTINEL)          |
-| Qwen2-VL-7B-Instruct   | 7.0K               |   ✅   |          [🤗 Base](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-7B-SENTINEL)          |
-| Qwen2.5-VL-7B-Instruct | 7.0K               |   ✅   |       [🤗 Base](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_5_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2.5-VL-7B-SENTINEL)       |
+| Base Model             | Training Data Size | LoRA |                                                                                                                              Download                                                                                                                              |
+| ---------------------- | ------------------ | :--: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| LLaVA-v1.5-7B          | 8.6K               |  ✅  |            [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.5-7b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_7b_SENTINEL_8_6k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-7B-SENTINEL)            |
+| LLaVA-v1.5-13B         | 7.0K               |  ✅  |           [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.5-13b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_5_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.5-13B-SENTINEL)            |
+| LLaVA-v1.6-Vicuna-7B   | 7.0K               |  ✅  |  [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-7b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_7b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-7B-SENTINEL)   |
+| LLaVA-v1.6-Vicuna-13B  | 7.0K               |  ✅  | [🤗 Base](https://huggingface.co/liuhaotian/llava-v1.6-vicuna-13b) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/LLaVA_v1_6_Vicuna_13b_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/LLaVA-v1.6-Vicuna-13B-SENTINEL) |
+| Qwen2-VL-2B-Instruct   | 12K                |  ✅  |         [🤗 Base](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_2B_Instruct_SENTINEL_12k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-2B-SENTINEL)          |
+| Qwen2-VL-7B-Instruct   | 7.0K               |  ✅  |          [🤗 Base](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2-VL-7B-SENTINEL)          |
+| Qwen2.5-VL-7B-Instruct | 7.0K               |  ✅  |       [🤗 Base](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) / [📄 Data](https://huggingface.co/datasets/psp-dada/SENTINEL/blob/main/Qwen2_5_VL_7B_Instruct_SENTINEL_7k.json) / [🤗 SENTINEL](https://huggingface.co/psp-dada/Qwen2.5-VL-7B-SENTINEL)       |
 
 ## 💻 Environment Setup
 
@@ -209,21 +209,17 @@ We provide the model weights mentioned in our paper, all of which are trained us
 
     <details>
     <summary>Generated Data Details</summary>
-    
+
       The generated data includes two `.jsonl` files:
-
    - One is `<model_name>.jsonl`, which is an auxiliary file used for analysis and **not** for constructing preference pairs. Each line corresponds to the result for one image and includes:
-
      - `sentences_cnt`: the total number of sentences describing the image
      - `hallu_objects`: the total number of hallucinated objects generated during model sampling
      - `uncertain_objects`: uncertain objects
      - `nonhallu_objects`: non-hallucinated objects
-
    - The other file is `<model_name>_data_pair.jsonl`, where each line is a preference sample pair. It includes essential fields such as `"image_path"`, `"context"`, `"y_win"`, `"y_lose"`, as well as additional fields for analysis.
    </details>
 
 6. Convert Training Samples into Required Format
-
    - If you want to train **LLaVA-v1.5**, use [`get_llava_v15_data_pair.py`](./utils/get_llava_v15_data_pair.py) to perform the conversion, in order to stay consistent with the original repository.
 
    - If you want to use **LLaVA-v1.6**, **Qwen2-VL**, or **Qwen2.5-VL**, you need to convert the training data into the **LLaMA-Factory** format. You can use [`get_llama_factory_data_pair.py`](./utils/get_llama_factory_data_pair.py) for the conversion.
@@ -231,9 +227,7 @@ We provide the model weights mentioned in our paper, all of which are trained us
 ## ⚙️ Training
 
 1.  **Prepare data**
-
     - Training Data
-
       - If you want to reproduce our experiments, you can use the [SENTINEL Dataset](https://huggingface.co/datasets/psp-dada/SENTINEL) that we constructed.
 
       - If you prefer to build your dataset, you can use the data generated in the [previous section](#data-generation).
@@ -243,7 +237,6 @@ We provide the model weights mentioned in our paper, all of which are trained us
       We use images from the Visual Genome dataset for model training. You can download them from [Visual Genome](https://homes.cs.washington.edu/~ranjay/visualgenome/api.html) and remember where it is.
 
 2.  **Training**
-
     - LLaVA-v1.5
 
       We modified the code based on the HA-DPO library, which itself is based on the official LLaVA-v1.5 implementation. This choice allows for a fair and convenient comparison with prior work.

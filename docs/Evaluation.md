@@ -13,13 +13,15 @@ Before preparing benchmark-specific data, **you MUST first download [eval.zip](h
 ### Object Halbench
 
 1. Prepare COCO2014 annotations
+
    ```shell
     mkdir llava/data/MSCOCO/coco2014
     cd llava/data/MSCOCO/coco2014
 
     wget -c http://images.cocodataset.org/annotations/annotations_trainval2014.zip
     unzip annotations_trainval2014.zip
-    ```
+   ```
+
 2. Download the question file follow [the instruction](https://github.com/RLHF-V/RLHF-V?tab=readme-ov-file#object-halbench) and put it under [`llava/data/eval/object_halbench`](/llava/data/eval/object_halbench). The file should be named `Object_HalBench.jsonl`.
 
 3. Inference using [`llava/eval_script/eval_object_halbench.sh`](/llava/eval_script/eval_object_halbench.sh).
@@ -30,7 +32,7 @@ Before preparing benchmark-specific data, **you MUST first download [eval.zip](h
 
 2. Download the `data` folder of the [AMBER official repo](https://github.com/junyangwang0410/AMBER/tree/master/data) to [`llava/data/eval/AMBER/data`](/llava/data/eval/AMBER/data).
 
-3. Inference the *Discriminative part* using [`llava/eval_script/eval_amber_dis.sh`](/llava/eval_script/eval_amber_dis.sh) or *Generative part* using [`llava/eval_script/eval_amber_gen.sh`](/llava/eval_script/eval_amber_gen.sh).
+3. Inference the _Discriminative part_ using [`llava/eval_script/eval_amber_dis.sh`](/llava/eval_script/eval_amber_dis.sh) or _Generative part_ using [`llava/eval_script/eval_amber_gen.sh`](/llava/eval_script/eval_amber_gen.sh).
 
 ### HallusionBench
 
@@ -38,7 +40,7 @@ Before preparing benchmark-specific data, **you MUST first download [eval.zip](h
 
 2. Download [`HallusionBench.json`](https://github.com/tianyi-lab/HallusionBench/blob/main/HallusionBench.json) and put it under [`llava/eval/utils/HallusionBench`](llava/eval/utils/HallusionBench).
 
-3. Use  [`convert_questions_file.py`](/llava/eval/utils/HallusionBench/convert_questions_file.py) to generate the questions file from `HallusionBench.json` to `questions.jsonl`.
+3. Use [`convert_questions_file.py`](/llava/eval/utils/HallusionBench/convert_questions_file.py) to generate the questions file from `HallusionBench.json` to `questions.jsonl`.
 
 4. Inference using [`llava/eval_script/eval_hallusion_bench.sh`](/llava/eval_script/eval_hallusion_bench.sh).
 
