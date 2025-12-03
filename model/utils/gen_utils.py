@@ -1,3 +1,19 @@
+"""
+SENTINEL 生成器工具模块
+=======================
+
+本模块提供 MLLM 生成相关的工具函数和类，包括：
+- GenOutput: 生成输出的数据类
+- 生成器初始化和调用函数
+- vLLM 和 HuggingFace 两种后端支持
+
+核心功能:
+    - init_vllm(): 初始化 vLLM 引擎
+    - get_generator(): 根据配置获取对应的生成器
+    - gen_vllm(): 使用 vLLM 进行生成
+    - gen_hf(): 使用 HuggingFace 进行生成
+"""
+
 from dataclasses import dataclass, field
 from typing import Callable
 
@@ -11,12 +27,51 @@ from vllm.sequence import Logprob
 
 @dataclass
 class GenOutput:
+    """
+    生成器输出的统一封装类
+    
+    无论使用 vLLM 还是 HuggingFace 后端，都返回此格式的输出。
+    
+    Attributes:
+        outputs: 生成的文本
+            - 单样本单候选: str
+            - 单样本多候选: list[str]
+            - 多样本: list[list[str]]
+        generated_ids: 生成的 token IDs（仅 HF 后端）
+        true_gen_length: 实际生成的 token 数量
+        log_probs: 每个 token 的对数概率（用于分析）
+    
+    Example:
+        >>> output = generator.gen(images, prompts, n=10)
+        >>> print(output.outputs[0])  # 第一个样本的第一个候选
+        >>> print(output.true_gen_length[0])  # 第一个样本的生成长度
+    """
+    
     outputs: list[str] | list[list[str]] = field(default_factory=list)
+    """生成的文本内容"""
+    
     generated_ids: torch.Tensor | None = None
+    """生成的 token IDs，形状为 [batch_size, seq_len]"""
+    
     true_gen_length: list[int] | list[list[int]] = field(default_factory=list)
+    """每个样本的实际生成长度（不包括 padding）"""
+    
     log_probs: list[list[dict[int, Logprob]]] | list[list[list[dict[int, Logprob]]]] | None = None
+    """每个 token 的对数概率"""
 
     def maybe_change_to_list(self, force_list: bool) -> "GenOutput":
+        """
+        根据 force_list 参数决定是否保持列表格式
+        
+        当只有一个样本时，默认会解包成单个元素，
+        设置 force_list=True 可以强制保持列表格式。
+        
+        Args:
+            force_list: 是否强制返回列表
+        
+        Returns:
+            self (支持链式调用)
+        """
         def maybe_ls(ls: list, force_list: bool) -> list:
             return ls if force_list or not ls or len(ls) > 1 else ls[0]
 
@@ -38,26 +93,78 @@ def init_vllm(
     model_context_len: int,
     enforce_eager: bool,
 ) -> LLM:
+    """
+    初始化 vLLM 引擎
+    
+    vLLM 是一个高性能的 LLM 推理引擎，通过 PagedAttention 等技术
+    实现高效的批处理和内存管理。
+    
+    Args:
+        model_name: HuggingFace 模型名称（如 "Qwen/Qwen2-VL-7B-Instruct"）
+        model_dir: 模型下载目录
+        gpu_memory_util: GPU 显存使用比例（0-1）
+        dtype: 数据类型（torch.float16 或 torch.bfloat16）
+        seed: 随机种子
+        model_context_len: 模型上下文长度
+        enforce_eager: 是否使用 eager 模式
+            - True: 启动快但批处理慢（适合调试）
+            - False: 启动慢但批处理快（适合生产）
+    
+    Returns:
+        vLLM LLM 实例
+    
+    Note:
+        - tensor_parallel_size=1 表示使用单 GPU
+        - swap_space=14 设置 14GB CPU 内存用于 swap
+        - 不要设置 num_scheduler_steps，否则会导致问题
+    """
     return LLM(
         model=model_name,
         trust_remote_code=True,
         download_dir=model_dir,
-        tensor_parallel_size=1,  # How many GPUs to use
+        tensor_parallel_size=1,  # 使用的 GPU 数量
         gpu_memory_utilization=gpu_memory_util,
         pipeline_parallel_size=1,
         dtype=dtype,
         seed=seed,
-        max_model_len=model_context_len,  # Model context length
-        enforce_eager=enforce_eager,  # True for faster init, False for faster batch generation
-        swap_space=14,  # The size (GiB) of CPU memory per GPU to use as swap space
+        max_model_len=model_context_len,  # 模型上下文长度
+        enforce_eager=enforce_eager,  # True: 快速初始化，False: 快速批处理
+        swap_space=14,  # CPU swap 空间大小 (GiB)
         task="generate",
-        # DO NOT SET num_scheduler_steps for VLLMs!!!
+        # 注意: 不要设置 num_scheduler_steps！
     )
 
 
 def get_generator(use_vllm: bool = True, debug: bool = False):
     """
-    Get the generator model from the args of the global variables.
+    根据全局配置获取对应的 MLLM 生成器
+    
+    工厂函数，根据 GVars.args.model 的值自动选择并初始化相应的生成器。
+    
+    Args:
+        use_vllm: 是否使用 vLLM 后端
+            - True: 使用 vLLM，批处理速度快
+            - False: 使用 HuggingFace，兼容性好
+        debug: 是否开启调试模式
+            - True: 使用 eager 模式，便于调试
+            - False: 使用编译模式，速度快
+    
+    Returns:
+        生成器实例，支持的类型:
+        - LlavaModel: LLaVA v1.5/v1.6
+        - Qwen2VLModel: Qwen2-VL
+        - Qwen2_5_VLModel: Qwen2.5-VL
+    
+    Raises:
+        ValueError: 不支持的模型类型
+    
+    Example:
+        >>> generator = get_generator(use_vllm=True, debug=False)
+        >>> output = generator.gen(images, prompts)
+    
+    Note:
+        - 默认 GPU 利用率为 70%，避免 OOM
+        - 模型类型从 GVars.args.model 自动推断
     """
     from model.auxiliary.global_vars import GVars
 
@@ -67,16 +174,17 @@ def get_generator(use_vllm: bool = True, debug: bool = False):
         GVars.main_device,
         GVars.logger,
     )
-    gpu_util: float = 0.7
+    gpu_util: float = 0.7  # GPU 显存使用率，设置较低以避免 OOM
 
+    # 根据模型名称选择对应的生成器类
     if "llava" in args.model.lower():
         from model.generator.llava import LlavaModel
 
         return LlavaModel(
             use_vllm=use_vllm,
             debug=debug,
-            version=args.model_version,
-            model_size=args.model_size,
+            version=args.model_version,  # "1.5" 或 "1.6"
+            model_size=args.model_size,   # "7b" 或 "13b"
             model_dir=model_dir,
             gpu_util=gpu_util,
             device=device,
@@ -88,7 +196,7 @@ def get_generator(use_vllm: bool = True, debug: bool = False):
         return Qwen2_5_VLModel(
             use_vllm=use_vllm,
             debug=debug,
-            model_size=args.model_size,
+            model_size=args.model_size,  # "7B"
             model_dir=model_dir,
             gpu_util=gpu_util,
             device=device,
@@ -100,7 +208,7 @@ def get_generator(use_vllm: bool = True, debug: bool = False):
         return Qwen2VLModel(
             use_vllm=use_vllm,
             debug=debug,
-            model_size=args.model_size,
+            model_size=args.model_size,  # "2B" 或 "7B"
             model_dir=model_dir,
             gpu_util=gpu_util,
             device=device,
