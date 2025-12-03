@@ -4,7 +4,9 @@ import random
 from dataclasses import asdict, dataclass, field
 
 # You need to consider
-DATA_CNT_LIMIT = 8600  # 生成的数据对数
+# DATA_CNT_LIMIT = 8600  # 生成的数据对数
+DATA_CNT_LIMIT = 1
+# input_jsonl_path: str | list[str] = "<model_name>_data_pair.jsonl"
 input_jsonl_path: str | list[str] = "<model_name>_data_pair.jsonl"
 output_json_path = "output.json"
 
