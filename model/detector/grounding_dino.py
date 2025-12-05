@@ -277,7 +277,7 @@ class DINO:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
                 target_sizes = [image.size[::-1] for image in images]
-                # 字典中包含 "scores", "boxes", "labels" 三个字段
+                # 字典中包含 "scores", "boxes", "labels"/"text_labels" 字段
                 results: list[dict] = self.processor.post_process_grounded_object_detection(
                     outputs,
                     encoded_inputs["input_ids"],
@@ -285,4 +285,10 @@ class DINO:
                     text_threshold=text_threshold,
                     target_sizes=target_sizes,
                 )
+        
+        # 兼容 transformers v4.51.0+：使用 text_labels 替代 labels
+        for result in results:
+            if "text_labels" in result:
+                result["labels"] = result.pop("text_labels")
+        
         return results

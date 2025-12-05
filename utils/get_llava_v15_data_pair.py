@@ -5,9 +5,9 @@ from dataclasses import asdict, dataclass, field
 
 # You need to consider
 # DATA_CNT_LIMIT = 8600  # 生成的数据对数
-DATA_CNT_LIMIT = 1
+DATA_CNT_LIMIT = 8600
 # input_jsonl_path: str | list[str] = "<model_name>_data_pair.jsonl"
-input_jsonl_path: str | list[str] = "<model_name>_data_pair.jsonl"
+input_jsonl_path: str | list[str] = "/home/yilin/SENTINEL/results/LLaVA_v1_5_7b_data_pair.jsonl"
 output_json_path = "output.json"
 
 # Don't need to change
@@ -66,7 +66,7 @@ def build_data_objects(jsonl_data: list[dict]) -> tuple[dict[str, Data], int]:
             data_dict[image_id] = Data(image_id=image_id, image_path=entry["image_path"])
 
         data_dict[image_id].nonhallu_objects.update(entry["nonhallu_objects"])
-        data_dict[image_id].hallu_objects.update(entry["hallu_objects_of_lose"])
+        data_dict[image_id].hallu_objects.update(entry["hallu_objects_of_y_lose"])
 
         pair = Pair(
             question=entry["question"],

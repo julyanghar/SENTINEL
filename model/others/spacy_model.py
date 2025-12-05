@@ -130,8 +130,13 @@ class SpacyModel:
 
         if isinstance(text, str):
             text = [text]
-        docs: list[Doc] = list(self.nlp.pipe(text, disable=self._resolve_coref_disable, component_cfg=self._coref_cfg))
-        resolved_text: list[str] = [doc._.resolved_text for doc in docs]
+        
+        try:
+            docs: list[Doc] = list(self.nlp.pipe(text, disable=self._resolve_coref_disable, component_cfg=self._coref_cfg))
+            resolved_text: list[str] = [doc._.resolved_text for doc in docs]
+        except (TypeError, AttributeError):
+            # fastcoref may fail on certain inputs due to internal bugs, fallback to original text
+            resolved_text = list(text)
 
         return maybe_return_ls(force_list, resolved_text)
 

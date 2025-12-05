@@ -78,14 +78,14 @@ def parse_arg() -> Namespace:
     parser.add_argument(
         "--dataset_path", 
         type=str, 
-        default="dataset/image_data.jsonl",
+        default="dataset/mask_data.jsonl",
         help="输入数据集路径（jsonl 格式）"
     )
     
     parser.add_argument(
         "--model",
         type=str,
-        default="Qwen2_VL_2B",
+        default="LLaVA_v1_5_7b",
         choices=[
             "LLaVA_v1_5_7b",           # LLaVA v1.5 7B
             "LLaVA_v1_5_13b",          # LLaVA v1.5 13B
@@ -127,6 +127,23 @@ def parse_arg() -> Namespace:
         type=str, 
         default="./log/",
         help="日志文件保存目录"
+    )
+    
+    # ==================== 运行模式参数 ====================
+    
+    parser.add_argument(
+        "--mode",
+        type=str,
+        default="mask",
+        choices=["default", "mask"],
+        help="运行模式：default（原始偏好对生成）或 mask（基于遮挡的偏好对生成）"
+    )
+    
+    parser.add_argument(
+        "--masked_images_dir",
+        type=str,
+        default="./results/masked_images",
+        help="遮挡图像保存目录（仅 mask 模式使用）"
     )
 
     args: Namespace = parser.parse_args()
