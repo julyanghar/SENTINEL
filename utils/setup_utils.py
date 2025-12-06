@@ -85,7 +85,7 @@ def parse_arg() -> Namespace:
     parser.add_argument(
         "--model",
         type=str,
-        default="LLaVA_v1_5_7b",
+        default="Qwen2_VL_2B",
         choices=[
             "LLaVA_v1_5_7b",           # LLaVA v1.5 7B
             "LLaVA_v1_5_13b",          # LLaVA v1.5 13B

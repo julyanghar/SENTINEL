@@ -24,7 +24,8 @@ class LlavaDataArguments:
     train_data_path: str = field(default=None, metadata={"help": "Path to the training data."})
     lazy_preprocess: bool = False
     is_multimodal: bool = False
-    image_folder: Optional[str] = field(default="")
+    image_folder: Optional[str] = field(default="", metadata={"help": "Path to the original image folder."})
+    masked_image_folder: Optional[str] = field(default=None, metadata={"help": "Path to the masked image folder (for Mask DPO mode)."})
     image_aspect_ratio: str = "square"
 
 

@@ -48,20 +48,23 @@ def run_mask() -> None:
     args, save_path, logger = GVars.args, GVars.save_path, GVars.logger
     batch_size = args.batch_size
 
+    # 输出目录
+    output_dir = save_path.replace(".jsonl", "_mask")
+    
+    # 遮挡图像保存目录：./results/{model}_masked_images
+    masked_images_dir = f"./results/{args.model}_masked_images"
+    
     # 记录当前配置
     logger.info(f"Running in MASK mode")
     logger.info(f"Current batch size: {batch_size}")
     logger.info(f"Dataset path: {args.dataset_path}")
-    logger.info(f"Masked images will be saved to: {args.masked_images_dir}")
-    
-    # 输出目录
-    output_dir = save_path.replace(".jsonl", "_mask")
+    logger.info(f"Masked images will be saved to: {masked_images_dir}")
     
     # 调用 mask 数据生成函数
     run_mask_dataset_generation(
         dataset_path=args.dataset_path,
         output_dir=output_dir,
-        masked_images_dir=args.masked_images_dir,
+        masked_images_dir=masked_images_dir,
         batch_size=batch_size,
         logger=logger,
     )

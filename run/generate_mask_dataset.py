@@ -50,7 +50,7 @@ from run.object_utils import get_object_n_represent, get_double_word_dict
 DEBUG = True
 """调试模式"""
 
-MASK_COLOR = (128, 128, 128)  # 灰色遮挡
+MASK_COLOR = (0, 0, 0)  # 纯黑色遮挡
 """遮挡区域的颜色 (R, G, B)"""
 
 MASK_EXPAND_RATIO = 0.05
